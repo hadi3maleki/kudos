@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
+import { kudosTheme, KudosRtlPlugin, KudosGlobalStyle } from "./styles/theme";
+import { CacheProvider } from "@emotion/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./pages";
+import { Layout } from "./components/Layout";
 
-function App() {
+const App = (): JSX.Element => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CacheProvider value={KudosRtlPlugin}>
+      <ThemeProvider theme={kudosTheme}>
+        <CssBaseline/>
+        <GlobalStyles styles = {KudosGlobalStyle}/>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Layout />} path="/">
+              <Route index element={<HomePage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </CacheProvider>
   );
-}
+};
 
 export default App;
