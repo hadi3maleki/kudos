@@ -84,8 +84,11 @@ export const kudosTheme = createTheme({
 
 export const KudosRtlPlugin = createCache({
   key: "muirtl",
-  stylisPlugins: [prefixer, rtlPlugin],
-});
+  stylisPlugins: [
+    (prefixer as unknown) as any,
+    (rtlPlugin as unknown) as any,
+  ], 
+}); 
 
 export const KudosGlobalStyle: GlobalStylesProps["styles"] = {
   "*": {
