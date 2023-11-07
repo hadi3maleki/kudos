@@ -1,6 +1,6 @@
 import axios  from 'axios';
 export const BaseApiUrl = {
-    dev: 'https://quera.iran.liara.run',
+    dev: 'http://172.16.0.52:6060/api',// https://quera.iran.liara.run
     prod: 'https://prod.quera.iran.liara.run'
 };
 

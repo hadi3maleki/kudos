@@ -3,8 +3,7 @@ import { useFormik } from "formik";
 import React from "react";
 import * as yup from "yup";
 import { UseLoginMutation } from "../../services/mutations/useLoginMutation";
-import toast from 'react-hot-toast';
-
+import toast from "react-hot-toast";
 
 const validationSchema = yup.object({
   username: yup.string().required("ایمیل سازمانی خوذ را وارد کنید"),
@@ -21,24 +20,16 @@ const Authentication: React.FC<IAuthenticationProps> = (): JSX.Element => {
     },
     validationSchema,
     onSubmit(values) {
-      console.log(values);
-      loginMutation.mutate(values,{
-        onSuccess(){
-            alert("ریکوست با موفقیت انجام شد")
+      // console.log(values);
+      loginMutation.mutate(values, {
+        onSuccess() {
+          toast.success("با موفقیت وارد سیستم شده اید");
         },
-        onError(err){
-          console.log("*************",err)
-          toast("This is an error", {
-            duration: 4000, style: {
-              background: "red",
-              color: "white",
-              fontSize: "20px",
-              padding: "10px",
-              borderRadius: "5px"
-            }})
-        }
-      })
-
+        // onError(err) {
+        //   console.log("*************", err);
+        //   toast.error("This is an error")
+        // },
+      });
     },
   });
   return (
